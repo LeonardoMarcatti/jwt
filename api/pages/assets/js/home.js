@@ -23,7 +23,7 @@ $(document).on('change', '#categoria', function (p) {
                  <p>${(response.total_items_in_this_category).toLocaleString('pt')}</p>
                </div>`;
                card += `<div class="card-body">
-               <a href="${response.permalink}" class="card-link" >Link da Categoria</a>
+               <a href="${response.permalink}" target="_blank" class="card-link" >Link da Categoria</a>
                     </div>
                 </div>`;
                 $('#card').html(card);

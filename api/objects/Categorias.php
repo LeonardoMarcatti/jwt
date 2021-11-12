@@ -3,11 +3,41 @@
 
     use PDO;
 
+    interface CatDAO{
+        public function getAll();
+        public function addCategoria(Categorias $c);
+        public function getID(string $id);
+    }
+
     class Categorias
+    {
+        private string $idml, $nome;
+
+        public function setIDML(string $idml)
+        {
+            $this->idml = $idml;
+        }
+
+        public function setNome(string $nome)
+        {
+            $this->nome = $nome;
+        }
+
+        public function getIDML()
+        {
+            return $this->idml;
+        }
+
+        public function getNome()
+        {
+            return $this->nome;
+        }
+
+    };
+    
+    class CategoriasDAO implements CatDAO
     {   
         private object $conn;
-        private string $nome, $descricao;
-        private int $id;
 
         public function __construct(object $db)
         {
@@ -29,27 +59,17 @@
             return json_encode($list);
         }
 
-        public function getDescricao(int $id)
-        {
-            $sql = 'select descricao from categorias where id = :id';
-            $select = $this->conn->prepare($sql);
-            $select->bindValue(':id', $id);
-            $select->execute();
-            $result = $select->fetch(PDO::FETCH_ASSOC)['descricao'];
-            return $result;
-        }
-
-        public function addCategoria($id, $cat)
+        public function addCategoria(Categorias $c)
         {
             $sql = "insert into categorias(id_ml, nome) values(:id_ml, :nome)";
             $insert = $this->conn->prepare($sql);
-            $insert->bindValue(':id_ml', $id);
-            $insert->bindValue(':nome', $cat);
+            $insert->bindValue(':id_ml', $c->getIDML());
+            $insert->bindValue(':nome', $c->getNome());
             $insert->execute();
             return true;
         }
 
-        public function getID($id)
+        public function getID(string $id)
         {
             $sql = 'select id from categorias where id_ml = :idml';
             $select = $this->conn->prepare($sql);
