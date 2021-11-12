@@ -24,10 +24,10 @@
         $user->email = filter_var($data->email, FILTER_SANITIZE_EMAIL);
         $user->create();
         http_response_code(200);
-        echo json_encode(["message" => "User has been created!"]);
+        echo json_encode(["message" => "Usuário cadastrado com sucesso!"]);
     } else {
         http_response_code(400);
-        echo json_encode(["message" => "User creation error!"]);
+        echo json_encode(["message" => "Erro na criação do usuário!"]);
     };
 
 ?>

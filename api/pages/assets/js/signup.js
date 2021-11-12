@@ -4,12 +4,12 @@ $('#sign_up').on('click', function(){
         <h2>Sign Up</h2>
         <form id='sign_up_form'>
             <div class="mb-3">
-                <label for="firstname" class="form-label">Firstname</label>
+                <label for="firstname" class="form-label">Nome:</label>
                 <input type="text" class="form-control" name="firstname" id="firstname" required />
             </div>
 
             <div class="mb-3">
-                <label for="lastname" class="form-label">Lastname</label>
+                <label for="lastname" class="form-label">Sobrenome</label>
                 <input type="text" class="form-control" name="lastname" id="lastname" required />
             </div>
 
@@ -19,17 +19,16 @@ $('#sign_up').on('click', function(){
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" name="password" id="password" required />
             </div>
             <div class="mb-3">
-                <label for="password2" class="form-label">Repeat Password</label>
+                <label for="password2" class="form-label">Repita senha</label>
                 <input type="password" class="form-control" name="password2" id="password2" required />
             </div>
 
-            <button type='submit' id="submit" class='btn btn-light' disabled>Sign Up</button>
-        </form>
-        `;
+            <button type='submit' id="submit" class='btn btn-light' disabled>Cadastrar</button>
+        </form>`;
 
     
     $('#content').html(html);
@@ -52,7 +51,6 @@ $('#sign_up').on('click', function(){
             alert('Confira suas senhas!');
         };
      });
-
 
     function serializeObject(val) {
         let object = {};
@@ -79,11 +77,11 @@ $('#sign_up').on('click', function(){
                 contentType : 'application/json',
                 data : form_data,
                 success : function(result) {
-                    $('#response').html("<div class='alert alert-success'>Successful sign up. Please login.</div>");
+                    $('#response').html(`<div class="alert alert-success">${result.message}</div>`);
                     sign_up_form.find('input').val('');
                 },
                 error: function(xhr, resp, text){
-                    $('#response').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
+                    $('#response').html(`<div class="alert alert-danger">${result.message}</div>`);
                 },
                 complete: function (e) { 
                     $('#submit').attr('disabled', '');
