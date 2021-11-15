@@ -8,4 +8,5 @@ INSTRUÇÕES DE INSTALAÇÃO E USO!
 3 - O endpoint para listar as categorias cadastradas é caminho_do_server/jwt/api/retrieve_categorias.php.
 4 - Aponte seu navegador para caminho_do_server/jwt/api/pages/
 5 - Cadastre um usuário clicando em Cadastr-se e após isso é necessário fazer o login.
-6 -  Com o login feito é possível verificar todas as categorias na lista. Escolha uma.
+6 - Com o login feito é possível verificar todas as categorias na lista. Escolha uma.
+7 - A atualização no banco de dados é faita automaticamente quando se escolhe uma categoria.
